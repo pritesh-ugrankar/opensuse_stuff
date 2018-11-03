@@ -1,0 +1,41 @@
+#command to update system.
+sudo zypper refresh && sudo zypper update
+
+#install sensors gvim and git.
+sudo zypper install sensors gvim git
+
+#install packman essentials repo.
+sudo zypper ar -cfp 90 http://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Leap_15.0/Essentials packman-essentials
+sudo zypper refresh
+sudo zypper repos
+sudo zypper dup --from packman-essentials --allow-vendor-change 
+
+#command to see which running processes might be affected after installing/updating packages.
+sudo zypper ps -s
+
+#install libfreetype6 which is an alternative for freetype2.
+sudo zypper install libfreetype6
+
+sudo zypper install freetype2
+
+#Add Leap 15 Repo, Add Fisiu repo, refresh.
+sudo zypper addrepo https://download.opensuse.org/repositories/openSUSE:Leap:15.0/standard/openSUSE:Leap:15.0.repo
+sudo zypper addrepo https://download.opensuse.org/repositories/home:Fisiu:leap/openSUSE_Leap_15.0/home:Fisiu:leap.repo
+sudo zypper refresh
+
+#install freetype2. (Mostly wont work.)
+sudo zypper install freetype2
+
+#Steps to remove a repo.
+#List the repos
+sudo zypper repos
+#remove the repo by the "alias".
+sudo zypper removerepo home_Fisiu_leap
+#List the repos to see if the above repo is actually removed.
+sudo zypper repos
+#Remove one more repo.
+sudo zypper removerepo http-download.opensuse.org-bb969cbd
+#List the repos to see if the above repo is actually removed.
+sudo zypper repos
+#Refresh the repos.
+sudo zypper refresh
